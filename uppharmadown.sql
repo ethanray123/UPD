@@ -109,7 +109,7 @@ CREATE TABLE `user` (
   `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `contact_no` varchar(11) DEFAULT NULL,
   `credit_card_no` varchar(20) DEFAULT NULL,
-  `type` enum('admin','consumer') DEFAULT NULL,
+  `type` enum('admin','consumer') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

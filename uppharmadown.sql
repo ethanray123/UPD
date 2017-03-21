@@ -156,7 +156,7 @@ ALTER TABLE `transac`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `credit_card_no` (`credit_card_no`),
-  ADD KEY `location` (`location`);
+  ADD KEY `address` (`address`);
 
 --
 -- AUTO_INCREMENT for dumped tables

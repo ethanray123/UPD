@@ -110,7 +110,6 @@ CREATE TABLE `user` (
   `contact_no` varchar(11) DEFAULT NULL,
   `credit_card_no` varchar(20) DEFAULT NULL,
   `type` enum('admin','consumer') DEFAULT NULL,
-  `location` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -204,7 +203,7 @@ ALTER TABLE `product_supplier`
 --
 ALTER TABLE `transac`
   ADD CONSTRAINT `fk_cn` FOREIGN KEY (`credit_card_no`) REFERENCES `user` (`credit_card_no`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`location`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_ln` FOREIGN KEY (`list_no`) REFERENCES `product_list` (`list_no`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

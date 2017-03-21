@@ -106,7 +106,7 @@ CREATE TABLE `user` (
   `password` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `address` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `contact_no` varchar(11) DEFAULT NULL,
   `credit_card_no` varchar(20) DEFAULT NULL,
   `type` enum('admin','consumer') DEFAULT NULL,

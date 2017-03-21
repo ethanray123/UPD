@@ -3,12 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2017 at 10:52 AM
+-- Generation Time: Mar 21, 2017 at 07:00 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 CREATE DATABASE uppharmadown;
 USE uppharmadown;
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -22,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `uppharmadown`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_no` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_qnty` int(10) DEFAULT NULL,
+  `product_price` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -49,9 +61,8 @@ CREATE TABLE `product` (
 
 CREATE TABLE `product_list` (
   `list_no` int(11) NOT NULL,
-  `subtotal` decimal(10,2) DEFAULT NULL,
-  `product_qnty` int(10) DEFAULT NULL,
-  `product_price` float DEFAULT NULL
+  `transac_no` int(11) NOT NULL,
+  `cart_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -89,7 +100,7 @@ CREATE TABLE `transac` (
   `date_of_transaction` date DEFAULT NULL,
   `transaction_status` enum('PAID','NOTPAID') DEFAULT NULL,
   `credit_card_no` varchar(20) DEFAULT NULL,
-  `list_no` int(11) DEFAULT NULL,
+  `list_no` int(11) NOT NULL,
   `grand_total` decimal(10,2) DEFAULT NULL,
   `discount` decimal(5,2) DEFAULT NULL,
   `delivery_location` varchar(100) CHARACTER SET utf8 DEFAULT NULL
@@ -113,8 +124,22 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `password`, `name`, `email`, `address`, `contact_no`, `credit_card_no`, `type`) VALUES
+(1, 'a8a15b230947dffe7d28e9beba511832', 'Ethan Ray Mosqueda', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', '', 'consumer');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD KEY `fk_product_id` (`product_id`),
+  ADD KEY `cart_no` (`cart_no`);
 
 --
 -- Indexes for table `product`
@@ -126,7 +151,9 @@ ALTER TABLE `product`
 -- Indexes for table `product_list`
 --
 ALTER TABLE `product_list`
-  ADD PRIMARY KEY (`list_no`);
+  ADD PRIMARY KEY (`list_no`),
+  ADD KEY `fk_transac_no` (`transac_no`),
+  ADD KEY `fk_cart_no` (`cart_no`);
 
 --
 -- Indexes for table `product_supplier`
@@ -147,8 +174,7 @@ ALTER TABLE `supplier`
 ALTER TABLE `transac`
   ADD PRIMARY KEY (`transaction_no`),
   ADD KEY `delivery_location` (`delivery_location`),
-  ADD KEY `fk_cn` (`credit_card_no`),
-  ADD KEY `fk_ln` (`list_no`);
+  ADD KEY `fk_cn` (`credit_card_no`);
 
 --
 -- Indexes for table `user`
@@ -186,25 +212,37 @@ ALTER TABLE `transac`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product_list`
+--
+ALTER TABLE `product_list`
+  ADD CONSTRAINT `fk_cart_no` FOREIGN KEY (`cart_no`) REFERENCES `cart` (`cart_no`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_transac_no` FOREIGN KEY (`transac_no`) REFERENCES `transac` (`transaction_no`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `product_supplier`
 --
 ALTER TABLE `product_supplier`
-  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `fk_supp_id` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`);
+  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_supp_id` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transac`
 --
 ALTER TABLE `transac`
   ADD CONSTRAINT `fk_cn` FOREIGN KEY (`credit_card_no`) REFERENCES `user` (`credit_card_no`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_ln` FOREIGN KEY (`list_no`) REFERENCES `product_list` (`list_no`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -181,11 +181,6 @@ ALTER TABLE `user`
 ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `product_list`
---
-ALTER TABLE `product_list`
-  MODIFY `list_no` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <style type="text/css">
     .btn{
@@ -26,11 +26,10 @@
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/freelancer.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -43,14 +42,55 @@
 
 </head>
 
-<body id="page-top" class="index animated fadeIn">
+<body id="page-top" class="index">
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
     <!-- Navigation -->
-    <?php require("navbar.php"); ?>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container-fluid">
+            
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand pull-center" href="#page-top">Up Pharma Down</a>
+            </div>
+
+            <!-- <div>
+                <ul class="nav navbar-nav">
+                  <li class=""><a href="#">View Drugs</a></li>
+                  <li></li>
+                </ul>
+            </div> -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li class="page-scroll">
+                    	<a href="#">View Drugs</a>
+                    </li>
+                </ul>
+            </div> -->
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
     <!-- Header -->
-    <header>
+    <!-- <header>
         <div class="container" id="maincontent" tabindex="-1">
             <div class="row">
                 <div class="col-lg-12">
@@ -66,13 +106,13 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Sign Up</h2>
+                    <h2>Admin<br>Sign Up</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -112,24 +152,10 @@
                         </div>
                         <div class=" control-group col-lg-6">
                             <div class="form-group floating-label-form-group controls">
-                                <label for="phone">Address</label>
-                                <input type="text" class="form-control" placeholder="Address" name="address" required data-validation-required-message="Please enter your address.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
                                 <label for="phone">Contact Number</label>
                                 <input type="tel" class="form-control" placeholder="Cellphone Number" name="contact_no" required data-validation-required-message="Please enter your phone number.">
                                 <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" form-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label for="ccnumber">Credit Card Number</label>
-                                <input type="text" class="form-control" placeholder="Credit Card Number(optional)" name="credit_card_no">
-                                <p class="help-block text-danger"></p>
-                                <input type="hidden" name="type" value="consumer">
+                                <input type="hidden" name="type" value="admin">
                             </div>
                         </div>
                         <div id="success"></div>
@@ -146,7 +172,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="success" id="about">
+    <!-- <section class="success" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -159,17 +185,17 @@
                     <p>Up Pharma Down is a website designed to store information related to the drugs served at your nearby pharmacy. In addition it gives you the option of buying your medicine online and having it delivered to your respected home for you to pay on delivery.</p> 
                     <p></p>
                 </div>
-                <!-- <div class="col-lg-4">
+                <div class="col-lg-4">
                     <p></p>
-                </div> -->
-                <!-- <div class="col-lg-8 col-lg-offset-2 text-center">
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="#" class="btn btn-lg btn-outline">
                         <i class="fa fa-download"></i> Download Theme
                     </a>
-                </div> -->
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- <section id="portfolio">
         <div class="container">
@@ -294,7 +320,7 @@
     </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden">
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
         <a class="btn btn-primary" href="#page-top">
             <i class="fa fa-chevron-up"></i>
         </a>
@@ -543,14 +569,3 @@
 </body>
 
 </html>
-<script>
-    $(document).ready(function() {
-        $(window).scroll(function() {
-            if ($('body').height() > ($(window).height() + $(window).scrollTop())) {
-                $(".scroll-top").addClass("hidden");
-            }else{
-                $(".scroll-top").removeClass("hidden");
-            }
-        });
-    });    
-</script>

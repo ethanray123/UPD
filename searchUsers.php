@@ -66,7 +66,7 @@ $(document).ready(function(){
 		if(e.keyCode == 13){
 			var search_string;
 			search_string = $("#search").val();
-			//console.log(search_string);
+			console.log(search_string+" is the search string");
 			$.ajax({
 				url:"searchAsAdmin.php",
 				method:"POST",
@@ -76,7 +76,7 @@ $(document).ready(function(){
 					console.log(data);
 					$("#result").html("");
 					$(data).each(function(key, value){
-						
+						console.log(value.name);
 					var row = "<tr data-id = "+value.user_id+">";
 						row += "<td>"+value.name+"</td>";
 						row += "<td>"+value.email+"</td>";
@@ -85,7 +85,7 @@ $(document).ready(function(){
 						row += "<td>"+value.credit_card_no+"</td>";
 						row += "<td><button class = 'btn btn-xs btn-warning glyphicon glyphicon-pencil' name = '"+value.user_id+"'}></button><button class = 'btn btn-xs btn-danger glyphicon glyphicon-remove' name = '"+value.user_id+"'}></td>";
 						row += "</tr>"
-						console.log(row);
+
 						$("#result").append(row);
 					});
 				},

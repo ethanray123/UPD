@@ -28,12 +28,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `cart`
 --
 
-CREATE TABLE `cart` (
-  `cart_no` int(11) NOT NULL,
+CREATE TABLE `product_list` (
+  `list_no` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_qnty` int(10) DEFAULT NULL,
-  `product_price` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+  `product_qnty` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -45,24 +44,11 @@ CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `name` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `barcode` int(10) DEFAULT NULL,
   `dosage` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `generic_name` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `brand` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `expiry_date` date DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_list`
---
-
-CREATE TABLE `product_list` (
-  `list_no` int(11) NOT NULL,
-  `transac_no` int(11) NOT NULL,
-  `cart_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,10 +85,10 @@ CREATE TABLE `transac` (
   `transaction_no` int(11) NOT NULL,
   `date_of_transaction` date DEFAULT NULL,
   `transaction_status` enum('PAID','NOTPAID') DEFAULT NULL,
-  `credit_card_no` varchar(20) DEFAULT NULL,
   `list_no` int(11) NOT NULL,
-  `grand_total` decimal(10,2) DEFAULT NULL,
   `discount` decimal(5,2) DEFAULT NULL,
+  `grand_total` decimal(10,2) DEFAULT NULL,
+  `credit_card_no` varchar(20) DEFAULT NULL,
   `delivery_location` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -116,6 +102,7 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `password` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `age` int(3) NOT NULL,
   `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `contact_no` varchar(11) DEFAULT NULL,
@@ -135,13 +122,6 @@ INSERT INTO `user` (`user_id`, `password`, `name`, `email`, `address`, `contact_
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD KEY `fk_product_id` (`product_id`),
-  ADD KEY `cart_no` (`cart_no`);
-
---
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -151,9 +131,7 @@ ALTER TABLE `product`
 -- Indexes for table `product_list`
 --
 ALTER TABLE `product_list`
-  ADD PRIMARY KEY (`list_no`),
-  ADD KEY `fk_transac_no` (`transac_no`),
-  ADD KEY `fk_cart_no` (`cart_no`);
+  ADD KEY `fk_product_id` (`product_id`);
 
 --
 -- Indexes for table `product_supplier`
@@ -173,7 +151,7 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transac`
   ADD PRIMARY KEY (`transaction_no`),
-  ADD KEY `delivery_location` (`delivery_location`),
+  ADD KEY `fk_dl` (`delivery_location`),
   ADD KEY `fk_cn` (`credit_card_no`);
 
 --
@@ -220,15 +198,8 @@ ALTER TABLE `user`
 --
 -- Constraints for table `cart`
 --
-ALTER TABLE `cart`
-  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `product_list`
---
 ALTER TABLE `product_list`
-  ADD CONSTRAINT `fk_cart_no` FOREIGN KEY (`cart_no`) REFERENCES `cart` (`cart_no`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_transac_no` FOREIGN KEY (`transac_no`) REFERENCES `transac` (`transaction_no`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_supplier`

@@ -46,6 +46,7 @@
 </head>
 <body>
 	<div class = 'container'>
+	<a href = '#'>Return To Main Page</a>
 		<span><input type = 'text' id = 'search' style = "float:right"></span>
 		<table class = 'table table-bordered'>
 			<thead>

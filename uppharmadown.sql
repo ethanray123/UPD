@@ -123,8 +123,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `password`, `name`, `email`, `address`, `contact_no`, `credit_card_no`, `type`) VALUES
-(1, 'a8a15b230947dffe7d28e9beba511832', 'Ethan Ray Mosqueda', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', '', 'consumer');
+INSERT INTO `user` (`user_id`, `password`, `age`, `name`, `email`, `address`, `contact_no`, `credit_card_no`, `type`) VALUES
+(1, 'a8a15b230947dffe7d28e9beba511832', `18`, 'Ethan Ray Mosqueda', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', '', 'consumer');
 
 --
 -- Indexes for dumped tables

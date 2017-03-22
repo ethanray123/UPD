@@ -57,10 +57,10 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `name`, `price`, `barcode`, `dosage`, `generic_name`, `brand`, `expiry_date`, `quantity`) VALUES
-(1, 'Biogesic', '5.00', 10001, '500mg', 'Paracetamol', 'Unilab', '2025-03-20', 100),
-(2, 'Medicol', '7.50', 10002, '200mg', 'Ibuprofen', 'Unilab', '2025-03-20', 100),
-(3, 'Tuseran Forte', '8.50', 10003, '350mg', 'Dextromethorphan', 'Unilab', '2025-03-25', 100);
+INSERT INTO `product` (`product_id`, `name`, `price`, `dosage`, `generic_name`, `brand`, `expiry_date`, `quantity`) VALUES
+(1, 'Biogesic', '5.00', '500mg', 'Paracetamol', 'Unilab', '2025-03-20', 100),
+(2, 'Medicol', '7.50', '200mg', 'Ibuprofen', 'Unilab', '2025-03-20', 100),
+(3, 'Tuseran Forte', '8.50', '350mg', 'Dextromethorphan', 'Unilab', '2025-03-25', 100);
 
 --
 -- Table structure for table `product_supplier`

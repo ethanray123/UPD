@@ -45,6 +45,7 @@
 
 </head>
 <body>
+<section class = 'section'>
 	<div class = 'container'>
 	<a href = '#'>Return To Main Page</a>
 		<span><input type = 'text' id = 'search' style = "float:right"></span>
@@ -58,6 +59,8 @@
 			</tbody>
 		</table>
 	</div>
+</section>
+	
 </body>
 </html>
 <script src = 'js/jquery.min.js'></script>
@@ -84,7 +87,7 @@ $(document).ready(function(){
 						row += "<td>"+value.address+"</td>";
 						row += "<td>"+value.contact_no+"</td>";
 						row += "<td>"+value.credit_card_no+"</td>";
-						row += "<td><button class = 'btn btn-xs btn-warning glyphicon glyphicon-pencil' name = '"+value.user_id+"'}></button><button class = 'btn btn-xs btn-danger glyphicon glyphicon-remove' name = '"+value.user_id+"'}></td>";
+						row += "<td><button class = 'btn btn-xs btn-warning glyphicon glyphicon-pencil' name = '"+value.user_id+"'}></button><div id = 'deletebutton' class = 'btn btn-xs btn-danger glyphicon glyphicon-remove' name = '"+value.user_id+"'}></div>";
 						row += "</tr>"
 
 						$("#result").append(row);
@@ -97,5 +100,26 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	$("#result").on("click",".btn-danger", function(){
+		var x = $(this).attr("name");
+		
+		$.ajax({
+			url:"deleteRowAsAdmin.php",
+			method:"POST",
+			data: {query:x},
+			dataType: "json",
+			success:function(data){
+				console.log(data);
+				$(this).parent().parent().remove();
+				location.reload();
+			},
+			error:function(){
+				alert("failed somewhere");
+			}
+		});
+		
+	});
+	
 });
 </script>

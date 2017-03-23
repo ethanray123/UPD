@@ -80,74 +80,6 @@
                 <div class="col-lg-12 ">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-<<<<<<< HEAD
-                    <form method="post" action="register.php"> <!-- logincheck.php -->
-                        <br>
-                        <div class="control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label for="name">Full Name</label>
-                                <input type="text" class="form-control" placeholder="Name" name="name" required data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label for="email">Email Address</label>
-                                <input type="email" class="form-control" placeholder="Email Address" name="email" required data-validation-required-message="Please enter your email address.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Enter a Password" name="password" required data-validation-required-message="Please enter your password.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Retype Password</label>
-                                <input type="password" class="form-control" placeholder="Retype Password" name="password2" required data-validation-required-message="Please enter your password again.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Address</label>
-                                <input type="text" class="form-control" placeholder="Address" name="address" required data-validation-required-message="Please enter your address.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Date of Birth</label>
-                                <input type="date" class="form-control" placeholder="Date of Birth" name="dob" required data-validation-required-message="Please enter your birth date.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" control-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Contact Number</label>
-                                <input type="tel" class="form-control" placeholder="Cellphone Number" name="contact_no" required data-validation-required-message="Please enter your phone number.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class=" form-group col-lg-6">
-                            <div class="form-group floating-label-form-group controls">
-                                <label>Credit Card Number</label>
-                                <input type="text" class="form-control" placeholder="Credit Card Number(optional)" name="credit_card_no">
-                                <p class="help-block text-danger"></p>
-                                
-                            </div>
-                        </div>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                        <br><br>
-                                <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
-                            </div>
-                        </div>
-
                     <!-- logincheck.php -->
                     
                     <!-- fullname email add pass retype pass address date of birth contact no -->
@@ -205,7 +137,6 @@
                                     <button class="btn btn-md" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                 </div>
                           </div>
-
                     </form>
                 </div>
             </div>
@@ -314,7 +245,7 @@
 
     <!-- Footer -->
     <footer class="text-center">
-        <div class="footer-above">
+        <!-- <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
@@ -348,12 +279,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="footer-below">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Up Pharma Down 2016
+                        Copyright &copy; Up Pharma Down 2017
                     </div>
                 </div>
             </div>
@@ -613,10 +544,10 @@
 <script>
     $(document).ready(function() {
         $(window).scroll(function() {
-            if ($('body').height() > ($(window).height() + $(window).scrollTop())) {
-                $(".scroll-top").addClass("hidden");
-            }else{
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {  //+ $(window).scrollTop()
                 $(".scroll-top").removeClass("hidden");
+            }else{
+                $(".scroll-top").addClass("hidden");
             }
         });
     });    

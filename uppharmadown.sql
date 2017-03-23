@@ -3,12 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2017 at 07:00 AM
+-- Generation Time: Mar 23, 2017 at 02:59 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 CREATE DATABASE uppharmadown;
 USE uppharmadown;
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -21,18 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `uppharmadown`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
-
-CREATE TABLE `product_list` (
-  `list_no` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `product_qnty` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,8 +38,6 @@ CREATE TABLE `product` (
   `quantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Dumping data for table `product`
 --
@@ -61,6 +46,20 @@ INSERT INTO `product` (`product_id`, `name`, `price`, `dosage`, `generic_name`, 
 (1, 'Biogesic', '5.00', '500mg', 'Paracetamol', 'Unilab', '2025-03-20', 100),
 (2, 'Medicol', '7.50', '200mg', 'Ibuprofen', 'Unilab', '2025-03-20', 100),
 (3, 'Tuseran Forte', '8.50', '350mg', 'Dextromethorphan', 'Unilab', '2025-03-25', 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_list`
+--
+
+CREATE TABLE `product_list` (
+  `list_no` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_qnty` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `product_supplier`
@@ -97,7 +96,6 @@ CREATE TABLE `transac` (
   `list_no` int(11) NOT NULL,
   `discount` decimal(5,2) DEFAULT NULL,
   `grand_total` decimal(10,2) DEFAULT NULL,
-  `credit_card_no` varchar(20) DEFAULT NULL,
   `delivery_location` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,7 +113,6 @@ CREATE TABLE `user` (
   `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `contact_no` varchar(11) DEFAULT NULL,
-  `credit_card_no` varchar(20) DEFAULT NULL,
   `type` enum('admin','consumer') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -123,8 +120,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `password`, `dob`, `name`, `email`, `address`, `contact_no`, `credit_card_no`, `type`) VALUES
-(1, 'a8a15b230947dffe7d28e9beba511832', '1998-10-19', 'Ethan Ray Mosqueda', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', '', 'consumer');
+INSERT INTO `user` (`user_id`, `password`, `name`, `dob`, `email`, `address`, `contact_no`, `type`) VALUES
+(1, 'a8a15b230947dffe7d28e9beba511832', 'Ethan Ray Mosqueda', '1998-10-19', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', 'consumer'),
+(8, '5f4dcc3b5aa765d61d8327deb882cf99', 'Sunny Rainday', NULL, 'herecomesthesun@gmail.com', '', '12341234', 'admin'),
+(9, 'ae2b1fca515949e5d54fb22b8ed95575', 'Johnny Test', '1010-10-10', 'jt123@gmail.com', 'Hilltop Road', '09324679991', 'consumer'),
+(10, 'ae2b1fca515949e5d54fb22b8ed95575', 'Susan Test', '0000-00-00', 'qwe@gmail.com', '', '09228092100', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -160,15 +160,13 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transac`
   ADD PRIMARY KEY (`transaction_no`),
-  ADD KEY `fk_dl` (`delivery_location`),
-  ADD KEY `fk_cn` (`credit_card_no`);
+  ADD KEY `fk_dl` (`delivery_location`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `credit_card_no` (`credit_card_no`),
   ADD KEY `address` (`address`);
 
 --
@@ -194,13 +192,13 @@ ALTER TABLE `transac`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `cart`
+-- Constraints for table `product_list`
 --
 ALTER TABLE `product_list`
   ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
@@ -216,7 +214,6 @@ ALTER TABLE `product_supplier`
 -- Constraints for table `transac`
 --
 ALTER TABLE `transac`
-  ADD CONSTRAINT `fk_cn` FOREIGN KEY (`credit_card_no`) REFERENCES `user` (`credit_card_no`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

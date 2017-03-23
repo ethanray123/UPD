@@ -6,8 +6,8 @@
 	$password = addslashes($_POST["password"]);
 	$password2 = addslashes($_POST["password2"]);
 	$address = addslashes($_POST["address"]);
-	$contact_no = addslashes($_POST["contact_no"]);
-	$credit_card_no = addslashes($_POST["credit_card_no"]);
+	$dob = $_POST["dob"];
+	$contact_no = $_POST["contact_no"];
 	$type = $_POST["type"];
 	
 	
@@ -22,8 +22,8 @@
 		if($password == $password2){
 			$password = md5($password);
 
-			$sql = "INSERT INTO user (name, email, password, address, contact_no, credit_card_no, type) 
-					VALUES ('$name', '$email', '$password', '$address', '$contact_no', '$credit_card_no', '$type')";
+			$sql = "INSERT INTO user (name, email, password, address, dob, contact_no, type) 
+					VALUES ('$name', '$email', '$password', '$address', '$dob', '$contact_no', '$type')";
 			$db = mysqli_query($conn, $sql);
 			
 			session_start();

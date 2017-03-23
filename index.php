@@ -80,6 +80,7 @@
                 <div class="col-lg-12 ">
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+<<<<<<< HEAD
                     <form method="post" action="register.php"> <!-- logincheck.php -->
                         <br>
                         <div class="control-group col-lg-6">
@@ -146,6 +147,65 @@
                                 <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
                             </div>
                         </div>
+
+                    <!-- logincheck.php -->
+                    
+                    <!-- fullname email add pass retype pass address date of birth contact no -->
+                    <!-- floating-label-form-group controls -->
+                    <form class="form" action="register.php" method="post" autocomplete="off">
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                  <label><h4>Full Name</h4></label>
+                                  <input type="text" class="form-control" name="name" placeholder="John Doe" title="Enter Your Name" required>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                  <label><h4>Email Address</h4></label>
+                                  <input type="email" class="form-control" name="email" placeholder="you@email.com" title="Enter an Email" required>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                 <label><h4>Password</h4></label>
+                                  <input type="password" class="form-control" name="password" placeholder="Enter Password" title="Enter a Password" required>
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                 <label><h4>Retype Password</h4></label>
+                                  <input type="password" class="form-control" name="password2" placeholder="Retype Password" title="Retype Password" required>
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                 <label><h4>Date of Birth</h4></label>
+                                  <input type="date" class="form-control" name="dob" title="Enter your Birthdate" required>
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                  <label><h4>Address</h4></label>
+                                  <input type="text" class="form-control" name="address" placeholder="Location" title="Enter a Location" required>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-xs-6">
+                                 <label><h4>Contact Number</h4></label>
+                                 <input type="text" class="form-control" name="contact_no" placeholder="Cell Phone Number" title="Enter your Contact Number" required>
+                                 <input type="hidden" name="type" value="consumer">
+                              </div>
+                          </div>
+                          
+                          
+                          <div class="form-group">
+                               <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-md btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                    <button class="btn btn-md" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                </div>
+                          </div>
+
                     </form>
                 </div>
             </div>

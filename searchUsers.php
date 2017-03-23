@@ -1,5 +1,6 @@
 <?php
 	require('conn.php');
+	session_start();
 ?>
 
 <html>
@@ -47,7 +48,7 @@
 <body>
 <section class = 'section'>
 	<div class = 'container'>
-	<a href = '#'>Return To Main Page</a>
+	<a href = 'adminPage.php'>Return To Main Page</a>
 		<span><input type = 'text' id = 'search' style = "float:right"></span>
 		<table class = 'table table-bordered'>
 			<thead>

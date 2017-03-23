@@ -12,8 +12,8 @@
                                     <span class='glyphicon glyphicon-off' aria-hidden='true' aria-label='Log-out'></span>
                                 </a>";
                         }else{
-                            echo "<form class='form-inline' method='post' action='login_check.php'> 
-                                    <input type='email' name='email' class='form-control' placeholder='email'>
+                            echo "<form class='form-inline' method='post' action='login_check.php' autocomplete='off'> 
+                                    <input type='email' name='email' class='form-control' placeholder='Email' autocomplete='off' />
                                     <input type='password' name='password'  class='form-control' placeholder='Password'>
                                     <button class='btn btn-success'>Login</button>
                                 </form>";

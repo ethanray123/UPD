@@ -67,6 +67,11 @@
 		<div class= 'jumbotron'>
 			<br>
 			<h2 class='name text-left' id = 'adminname'>Hello, Admin <?php echo $_SESSION['name'];?></h2>
+			 &nbsp  &nbsp  &nbsp <label><a href = 'searchUsers.php' id = 'navitems'>Open Users Database</a></label>
+			&nbsp  &nbsp <label><a href = 'search.php' id = 'navitems'>Open Medecine Database</a></label>
+			&nbsp  &nbsp <label><a href = '#' id = 'navitems'>View Suppliers</a></label>
+			&nbsp  &nbsp <label><a href = '#' id = 'navitems'>View Transactions</a></label>
+			
 		</div>
 		
 	</div>

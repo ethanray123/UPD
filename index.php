@@ -136,7 +136,7 @@
                                 <label>Credit Card Number</label>
                                 <input type="text" class="form-control" placeholder="Credit Card Number(optional)" name="credit_card_no">
                                 <p class="help-block text-danger"></p>
-                                F
+                                
                             </div>
                         </div>
                         <div id="success"></div>

@@ -34,14 +34,20 @@
 
  <?php
 	require("conn.php");
-	$sql = "SELECT * FROM product"
+	$sql = "SELECT * FROM product";
+	session_start();
+	if(isset($_SESSION['user_id'])){
+		$x = $_SESSION['user_id'];
+	}else{
+		$x = -1 ;
+	}
  ?>
 </head>
 <body>
 	<section class = 'searchsec'>
 		<div class = 'container'>
 			<input type = 'text' id = 'search' placeholder = 'Press Enter after typing to search' class = 'form-control'>
-			<table class = 'table table-bordered table-hovered'>
+			<table id = 'myTable' class = 'table table-bordered table-hovered'>
 				<div class = 'col-md-6'>
 					<th>Product Name</th>
 				</div>
@@ -58,13 +64,36 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	      	<center>
+	        <p><strong>Product Name</strong></p>
+	        <input type='text' class='pname' value=''>
+	        <p><strong>Product Brand</strong></p>
+	        <input type='text' class='pbrand' value=''>
+	        <p><strong>Product Price</strong></p>
+	        <input type='text' class='pprice' value=''>
+	        <p><strong>Product Quantity</strong></p>
+	        <input type='text' class='pquantity' value=''><br>
+	        <button class='btn btn-success btn1'>Submit</button>
+	   		</center>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	</section>
 </body>
 </html>
-<script src = 'vendor/jquery/jquery.min.js'></script>
+
+<script src = 'js/jquery.min.js'></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-
+	var arrayOfData = [];
+	var i;
+	var z = false;
 	$("#search").on("keyup", function(e){
 		if(e.keyCode == 13){
 			var searchitem = $(this).val();
@@ -78,20 +107,48 @@ $(document).ready(function(){
 					$("#results").html("");
 					
 					$(data).each(function(key, value){
+						arrayOfData[i]=new Array(value.product_id, value.name, value.brand, value.price);
 						var row = "<tr id = '"+value.product_id+"'>";
 						row+="<td>"+value.name+"</td>";
 						row+="<td>"+value.brand+"</td>";
 						row+="<td>"+value.price+"</td>";
-						row += "<td><button class='btn btn-xs btn-success glyphicon glyphicon-plus'></button></td>";
-						console.log(row);
+						row += "<td><button id = 'button' class='btn btn-xs btn-success glyphicon glyphicon-shopping-cart'></button></td>";
+						//console.log(arrayOfData[i]);
 						$("#results").append(row);
+						i++;
 					});
+					
 				},
 				error: function(){
-					alert("failed somewhere");
+					alert("No searches found");
+					$("#results").html("");
 				}
 			});
+			
 		}
+		
+	});
+	
+	
+	
+	$(this).on("click","#button",function(e){
+		var x = <?php echo $x; ?>;
+		var lol =$(this).parent().parent().attr("id");
+		parseInt(lol);
+		console.log(arrayOfData);
+		console.log(lol);
+		var tableName = document.getElementById("myTable");
+		if(x!=-1){
+			alert(tableName);
+			$('#myModal').modal('show');
+			var cell = arrayOfData[0];
+			console.log(arrayOfData[0]);
+		}else{
+			alert("You must be able to login to buy. Redirected to the homepage");
+			window.location.href = "index.php";
+		}
+		
+		
 	});
 })
 </script>

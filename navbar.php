@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <div>
                 <ul class="nav navbar-nav">
-                  <li class=""><a href="viewDrugs.php">View Drugs</a></li>
+                  <li class=""><a href="search.php">View Drugs</a></li>
                   <li></li>
                 </ul>
                 <div class="pull-right nav navbar-nav">

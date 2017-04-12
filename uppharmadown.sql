@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2017 at 02:59 PM
+-- Generation Time: Apr 12, 2017 at 03:02 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
-CREATE DATABASE uppharmadown;
-USE uppharmadown;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -16,7 +15,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
+CREATE DATABASE uppharmadown;
+USE uppharmadown;
 --
 -- Database: `uppharmadown`
 --
@@ -36,16 +36,17 @@ CREATE TABLE `product` (
   `brand` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `expiry_date` date DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `dosage`, `generic_name`, `brand`, `expiry_date`, `quantity`) VALUES
-(1, 'Biogesic', '5.00', '500mg', 'Paracetamol', 'Unilab', '2025-03-20', 100),
+(1, 'Biogesic', '5.00', '500mg', 'Paracetamol', 'Unilab', '2025-03-20', 200),
 (2, 'Medicol', '7.50', '200mg', 'Ibuprofen', 'Unilab', '2025-03-20', 100),
-(3, 'Tuseran Forte', '8.50', '350mg', 'Dextromethorphan', 'Unilab', '2025-03-25', 100);
+(3, 'Tuseran Forte', '8.50', '350mg', 'Dextromethorphan', 'Unilab', '2025-03-25', 100),
+(5, 'Clear', '40.00', '500ml', '', 'Unilever', '2017-06-12', 15);
 
 -- --------------------------------------------------------
 
@@ -56,7 +57,7 @@ INSERT INTO `product` (`product_id`, `name`, `price`, `dosage`, `generic_name`, 
 CREATE TABLE `product_list` (
   `list_no` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_qnty` int(10) DEFAULT NULL
+  `product_qnty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -121,10 +122,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `password`, `name`, `dob`, `email`, `address`, `contact_no`, `type`) VALUES
-(1, 'a8a15b230947dffe7d28e9beba511832', 'Ethan Ray Mosqueda', '1998-10-19', 'ethanray19@gmail.com', 'Puso Center, Mactan Lapu-Lapu City', '09561332497', 'consumer'),
-(8, '5f4dcc3b5aa765d61d8327deb882cf99', 'Sunny Rainday', NULL, 'herecomesthesun@gmail.com', '', '12341234', 'admin'),
-(9, 'ae2b1fca515949e5d54fb22b8ed95575', 'Johnny Test', '1010-10-10', 'jt123@gmail.com', 'Hilltop Road', '09324679991', 'consumer'),
-(10, 'ae2b1fca515949e5d54fb22b8ed95575', 'Susan Test', '0000-00-00', 'qwe@gmail.com', '', '09228092100', 'admin');
+(1, 'a8a15b230947dffe7d28e9beba511832', 'Ethan Ray Mosqueda', '1998-10-19', 'ethanray19@gmail.com', 'Puso Center Mactan, Lapu-Lapu City', '09561332497', 'consumer'),
+(11, '25f9e794323b453885f5181f1b624d0b', 'Robert Michael Lim', '1998-04-04', 'robertmichaellim@yahoo.com', 'Consolacion, Cebu', '09055177511', 'consumer'),
+(15, '787c74a2e618a696e34e025adda33ad3', 'Sunny Rainday', '0000-00-00', 'herecomesthesun@gmail.com', '', '09228092100', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -177,7 +177,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `supplier`
 --
@@ -192,7 +192,7 @@ ALTER TABLE `transac`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --
@@ -201,7 +201,7 @@ ALTER TABLE `user`
 -- Constraints for table `product_list`
 --
 ALTER TABLE `product_list`
-  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 
 --
 -- Constraints for table `product_supplier`
@@ -214,7 +214,7 @@ ALTER TABLE `product_supplier`
 -- Constraints for table `transac`
 --
 ALTER TABLE `transac`
-  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

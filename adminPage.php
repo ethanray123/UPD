@@ -12,7 +12,7 @@
         background-color: #18BC9C;
         border-radius: 0px;
         font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    }
+    }/
     #register{
         padding-top: 30px;
     }
@@ -58,22 +58,10 @@
 
 </head>
 <body>
-		<nav id = 'mainNav' class="navbar navbar-default navbar-fixed-top navbar-custom affix-top">
-			<div class= 'container-fluid'>
-				<a href = 'adminpage.php' id = 'navitems'>Up Pharma Down</a>
-				<span class = 'navbar-right'><a href = 'logout.php' id = 'navitems'>Logout</a></span>
-			</div>
-		</nav>
-		<div class= 'jumbotron'>
-			<br>
-			<h2 class='name text-left' id = 'adminname'>Hello, Admin <?php echo $_SESSION['name'];?></h2>
-			 &nbsp  &nbsp  &nbsp <label><a href = 'searchUsers.php' id = 'navitems'>Open Users Database</a></label>
-			&nbsp  &nbsp <label><a href = 'search.php' id = 'navitems'>Open Medecine Database</a></label>
-			&nbsp  &nbsp <label><a href = '#' id = 'navitems'>View Suppliers</a></label>
-			&nbsp  &nbsp <label><a href = '#' id = 'navitems'>View Transactions</a></label>
-			
-		</div>
-		
+	<?php require("navbarAdmin.php"); ?>
+	
+	<div class="content">
+
 	</div>
 </body>
 </html>

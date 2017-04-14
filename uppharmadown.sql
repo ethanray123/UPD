@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2017 at 03:02 PM
+-- Generation Time: Apr 14, 2017 at 02:27 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -60,6 +60,20 @@ CREATE TABLE `product_list` (
   `product_qnty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `product_list`
+--
+
+INSERT INTO `product_list` (`list_no`, `product_id`, `product_qnty`) VALUES
+(1, 1, 12),
+(1, 2, 10),
+(1, 3, 1),
+(1, 5, 2),
+(2, 1, 12),
+(2, 2, 10),
+(2, 3, 1),
+(2, 5, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -95,10 +109,19 @@ CREATE TABLE `transac` (
   `date_of_transaction` date DEFAULT NULL,
   `transaction_status` enum('PAID','NOTPAID') DEFAULT NULL,
   `list_no` int(11) NOT NULL,
+  `consumer_id` int(11) NOT NULL,
   `discount` decimal(5,2) DEFAULT NULL,
   `grand_total` decimal(10,2) DEFAULT NULL,
   `delivery_location` varchar(100) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transac`
+--
+
+INSERT INTO `transac` (`transaction_no`, `date_of_transaction`, `transaction_status`, `list_no`, `consumer_id`, `discount`, `grand_total`, `delivery_location`) VALUES
+(1, '2017-04-14', 'PAID', 1, 1, '0.00', '223.50', 'Puso Center Mactan, Lapu-Lapu City'),
+(2, '2017-04-14', 'NOTPAID', 2, 1, '0.00', '223.50', 'Puso Center Mactan, Lapu-Lapu City');
 
 -- --------------------------------------------------------
 
@@ -160,7 +183,8 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `transac`
   ADD PRIMARY KEY (`transaction_no`),
-  ADD KEY `fk_dl` (`delivery_location`);
+  ADD KEY `fk_dl` (`delivery_location`),
+  ADD KEY `fk_ci` (`consumer_id`);
 
 --
 -- Indexes for table `user`
@@ -187,7 +211,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `transac`
 --
 ALTER TABLE `transac`
-  MODIFY `transaction_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -207,13 +231,14 @@ ALTER TABLE `product_list`
 -- Constraints for table `product_supplier`
 --
 ALTER TABLE `product_supplier`
-  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-  ADD CONSTRAINT `fk_supp_id` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`);
+  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_supp_id` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transac`
 --
 ALTER TABLE `transac`
+  ADD CONSTRAINT `fk_ci` FOREIGN KEY (`consumer_id`) REFERENCES `user` (`user_id`),
   ADD CONSTRAINT `fk_dl` FOREIGN KEY (`delivery_location`) REFERENCES `user` (`address`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

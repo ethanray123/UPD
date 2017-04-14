@@ -78,7 +78,7 @@
         <div class='container-fluid'>
       <!-- Page Content -->
       <div class="container animated fadeIn">
-        <div class="row">
+        <div class="row"><br><br>
             <div class="col-sm-8" id="name"><h1><?php echo $_SESSION['name']?><br><br></h1></div>
         </div>
         <div class="row">

@@ -7,8 +7,6 @@
 <html>
 <head>
 
-    <title>Up Pharma Down - Drug Database</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type = 'text/css'>
 	<meta charset="utf-8">

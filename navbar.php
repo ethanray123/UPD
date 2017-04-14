@@ -2,17 +2,21 @@
         <div class="container-fluid">
             <div>
                 <ul class="nav navbar-nav">
-                  <li class=""><a href="viewDrugs.php">View Drugs</a></li>
-                  <li></li>
+                  <li class=""><a href="cart.php">View Drugs</a></li>
+                    <?php
+                        if(isset($_SESSION['name'])){ 
+                            echo "<li class=''><a href='profile.php'>Your Profile</a></li>";
+                        }
+                    ?>
                 </ul>
                 <div class="pull-right nav navbar-nav">
                     <?php 
                         if(isset($_SESSION['name'])){ 
-                            echo "<a class='btn btn-md btn-outline' href='logout.php'>
+                            echo "<a class='btn btn-md btn-outline' href='logout.php' style='margin-top:2px;'>
                                     <span class='glyphicon glyphicon-off' aria-hidden='true' aria-label='Log-out'></span>
                                 </a>";
                         }else{
-                            echo "<form class='form-inline' method='post' action='login_check.php' autocomplete='off'> 
+                            echo "<form class='form-inline' method='post' action='login_check.php' autocomplete='off' style='margin-top:10px;'> 
                                     <input type='email' name='email' class='form-control' placeholder='Email' autocomplete='off' />
                                     <input type='password' name='password'  class='form-control' placeholder='Password'>
                                     <button class='btn btn-success'>Login</button>

@@ -1,6 +1,9 @@
 <?php
 	require('conn.php');
 	session_start();
+	if(!isset($_SESSION['name'])){
+		header("location:index.php");
+	}
 ?>
 
 <html>
@@ -21,7 +24,7 @@
         background-color: #18BC9C;
         border-radius: 0px;
         font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    }/
+    }
     #register{
         padding-top: 30px;
     }

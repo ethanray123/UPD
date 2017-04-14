@@ -144,7 +144,52 @@
                           <li class="page-item"><a class="page-link" href="#update" data-toggle="tab">update</a></li>
                         </ul>
                       </nav> -->
-                      <!-- <h4>Recent Transactions</h4> -->
+                      <h4>Recent Transactions</h4>
+                      <table class = 'table table-bordered table-hover'>
+        <thead>
+          <tr>
+            <div class = 'col-md-6'>
+              <th>Transaction No.</th>
+            </div>
+            <div class = 'col-md-6'>
+              <th>Date of Transaction</th>
+            </div>
+            <div class = 'col-md-6'>
+              <th>Transaction Status</th>
+            </div>
+            <div class = 'col-md-6'>
+              <th>Discount</th>
+            </div>
+            <div class = 'col-md-6'>
+              <th>Grand Total</th>
+            </div>
+            <div class = 'col-md-6'>
+              <th>Delivery Location</th>
+            </div>
+          </tr>
+        </thead>
+        <tbody id = 'results'>
+          <?php
+                    
+                    $query = "SELECT * FROM transac WHERE consumer_id='{$_SESSION['user_id']}'";
+                    
+                    $result = mysqli_query($conn, $query);
+                                    
+                    if($result) {
+                        while($row = mysqli_fetch_assoc($result)){
+                            echo "<tr>
+                                <td class='transaction_no'>{$row['transaction_no']}</td>
+                                <td>{$row['date_of_transaction']}</td>
+                                <td>{$row['transaction_status']}</td>
+                                <td>{$row['discount']}</td> 
+                                <td>{$row['grand_total']}</td>
+                                <td>{$row['delivery_location']}</td>".
+                                "</tr>";
+                        }
+                    }
+                ?>
+        </tbody>
+      </table>
                       <hr>
                  </div><!--/tab-pane-->
                  <!--<div class="tab-pane animated fadeIn" id="notification">
